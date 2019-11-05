@@ -11,20 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import RegistrarTutor.BS.TutorBs;
-import RegistrarTutor.Bean.Tutor;
+import RegistrarTutor.BS.CursoBs;
+import RegistrarTutor.Bean.Curso;
 
 
 
-@WebServlet("/EliminarControl")
-public class EliminarControl extends HttpServlet {
+/**
+ * Servlet implementation class EliminarCurso
+ */
+@WebServlet("/EliminarCurso")
+public class EliminarCurso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public EliminarControl() {
+    public EliminarCurso() {
         super();
         // TODO Auto-generated constructor stub
     }
-
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -35,22 +37,22 @@ public class EliminarControl extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 
-		String idcodigo = (String) request.getParameter("tutor.codigo");
-		if (idcodigo==null || idcodigo.isEmpty() ) {
-			rd= request.getRequestDispatcher("EliminarTutor.jsp");
+		String nombre = (String) request.getParameter("curso.nombre");
+		if (nombre==null || nombre.isEmpty() ) {
+			rd= request.getRequestDispatcher("EliminarCurso.jsp");
 			codigo=-1;
 			misesion.setAttribute("codigo", codigo);
 			rd.forward(request, response);
 			System.err.println("introduca un nombre  " + codigo);
 		}  else {
-			Tutor tutor = new Tutor();
-			tutor.setIdcodigo(idcodigo);
-			TutorBs tutorbs = new TutorBs();
-			int resultado = tutorbs.eliminarTutor(tutor);
+			Curso curso = new Curso();
+			curso.setNombre(nombre);
+			CursoBs tutorbs = new CursoBs();
+			int resultado = tutorbs.eliminarCurso(curso);
 			System.out.println("--->resultado " + resultado);
 			if (resultado ==1) {
 				System.out.println("--->Dentro del if" + resultado);
-				rd = request.getRequestDispatcher("ExitoEliminarCurso.jsp");
+				rd = request.getRequestDispatcher("ExitoEliminarTutor.jsp");
 				codigo = 1;
 				misesion.setAttribute("codigo", codigo);
 				rd.forward(request, response);
@@ -58,4 +60,6 @@ public class EliminarControl extends HttpServlet {
 		}
 
 	}
+
+
 }
