@@ -54,7 +54,7 @@ public class TutorControl extends HttpServlet {
 			codigo=-3;
 			misesion.setAttribute("codigo", codigo);
 			rd.forward(request, response);
-			System.err.println("introduca un primer apellido " + codigo);
+			System.err.println("introduca una fecha de inicio " + codigo);
 		} 
 		else if(segundoapellido==null || segundoapellido.isEmpty()) {
 			rd= request.getRequestDispatcher("RegistrarTutor.jsp");
